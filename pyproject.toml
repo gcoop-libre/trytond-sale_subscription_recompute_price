@@ -1,0 +1,72 @@
+[build-system]
+requires = [
+    'hatchling >= 1',
+    'hatch-tryton',
+    'hatch-tryton-ar @ git+https://github.com/tryton-ar/hatch-tryton-ar.git'
+    ]
+build-backend = 'hatchling.build'
+
+[project]
+name = 'trytonar_sale_subscription_recompute_price'
+dynamic = ['version', 'dependencies', 'optional-dependencies', 'authors', 'readme']
+requires-python = '>=3.10'
+maintainers = [
+    {name = "tryton-ar", email = "info@tryton.org.ar"},
+    ]
+description = 'Tryton module to recompute subscription line prices (fixed amount or percentage)'
+license = 'GPL-3.0-or-later'
+license-files = ['LICENSE', 'COPYRIGHT']
+keywords = ["tryton", "sale", "subscription", "recompute", "price"]
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Environment :: Plugins",
+    "Framework :: Tryton",
+    "Topic :: Office/Business",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    ]
+
+[project.entry-points.'trytond.modules']
+sale_subscription_recompute_price = 'trytond.modules.sale_subscription_recompute_price'
+
+[project.urls]
+homepage = "https://github.com/tryton-ar/sale_subscription_recompute_price"
+documentation = "https://docs.tryton.org/"
+changelog = "https://github.com/tryton-ar/sale_subscription_recompute_price/blob/master/CHANGELOG"
+forum = "https://www.tryton.org/forum"
+issues = "https://github.com/tryton-ar/sale_subscription_recompute_price/issues"
+
+[tool.hatch.build]
+include = [
+    '**/tryton.cfg',
+    '**/*.py',
+    '**/*.xml',
+    'view/**/*.xml',
+    'locale/**/*.po',
+    '**/*.fodt',
+    '**/*.fods',
+    '**/*.txt',
+    'icons/**/*.svg',
+    'tests/**/*.rst',
+    'tests/**/*.json',
+    'tests/**/*.csv',
+    'scripts/**/*',
+    ]
+exclude = ['doc']
+
+[tool.hatch.build.targets.wheel.sources]
+"" = "trytond/modules/sale_subscription_recompute_price"
+
+[tool.hatch.metadata.hooks.tryton]
+dependencies = []
+copyright = 'COPYRIGHT'
+readme = 'README.rst'
+
+[tool.hatch.metadata.hooks.tryton.prefixes]
+
+[tool.hatch.metadata.hooks.tryton-ar]
+
+[tool.hatch.metadata.hooks.tryton.tryton-optional-dependencies]
+test = ['proteus']
+
+[tool.hatch.metadata]
+allow-direct-references = true
